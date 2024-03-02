@@ -5,7 +5,7 @@ import java.awt.Color; // Color class is used to represent colors
 import java.awt.image.BufferStrategy; // BufferStrategy class is used for double buffering
 
 // Define the Bar class
-public class MyBar {
+public class Bar {
     // Constants and variables for defining the bar
     private final int MARGIN = 1; // Margin for the bar
     private int x, y, width, value; // Position, width, and height of the bar
@@ -14,7 +14,7 @@ public class MyBar {
     // Constructor to initialize the bar with specified properties
     // y: the bottom left corner
 
-    public MyBar(int x, int y, int width, int value, Color color) {
+    public Bar(int x, int y, int width, int value, Color color) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -30,7 +30,7 @@ public class MyBar {
 
     // Method to clear the space occupied by the bar
     public void clear(Graphics g) {
-        g.setColor(ColorPicker.CANVAS_BACKGROUND); // Set the background color
+        g.setColor(ColorManager.CANVAS_BACKGROUND); // Set the background color
         g.fillRect(x + MARGIN, y - value, width - MARGIN * 2, value); // Fill the rectangle with background color
     }
 

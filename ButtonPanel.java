@@ -4,7 +4,7 @@ import javax.swing.ImageIcon; // ImageIcon represents an icon from an image file
 import java.awt.event.MouseListener; // Abstract window toolkit's event class have MouseListener method that deals with mouse events.
 import java.awt.event.MouseEvent; // MouseEvent method represents a mouse event.
 
-public class SortingButtons extends JPanel { // declares the ButtonPanel class, which extends JPanel to create a custom
+public class ButtonPanel extends JPanel { // declares the ButtonPanel class, which extends JPanel to create a custom
                                           // Panel for buttons.
 
     public static final long serialVersionUID = 1L; // serialVersionUID provides a version number for serialization
@@ -16,7 +16,7 @@ public class SortingButtons extends JPanel { // declares the ButtonPanel class, 
     private SortButtonListener listener; // listener interface to handle button click events.
     private int number = 6; // number of buttons
 
-    public SortingButtons(SortButtonListener listener) { // Constructor for the ButtonPanel class, which initializes the
+    public ButtonPanel(SortButtonListener listener) { // Constructor for the ButtonPanel class, which initializes the
                                                       // panel with the specified listener.
         super();
 

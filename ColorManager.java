@@ -1,7 +1,7 @@
 import java.awt.Color; // java.awt package, AWT stands for Abstract Window toolkit used to make the GUI in java.
 						// java.awt.Color is used to 
 
-public class ColorPicker {
+public class ColorManager {
 	public static Color BACKGROUND = new Color(62, 62, 62); // dark gray color
 	public static Color CANVAS_BACKGROUND = new Color(48, 48, 48); // slightly darker shade of gray
 	public static Color BAR_WHITE = new Color(211, 222, 228); // light grayish-white color

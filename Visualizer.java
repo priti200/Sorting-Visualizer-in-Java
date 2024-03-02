@@ -1,3 +1,4 @@
+
 // Import statements for required Java classes and libraries
 import javax.swing.JOptionPane; // For displaying error messages
 import java.awt.image.BufferStrategy; // For buffering strategy in Swing
@@ -7,13 +8,13 @@ import java.util.Random; // For generating random numbers
 import java.util.concurrent.TimeUnit; // For handling time units
 
 // Class to display the sorting algorithm visualization
-public class Display {
+public class Visualizer {
     private static final int PADDING = 20; // Padding for the display
     private static final int MAX_BAR_HEIGHT = 350, MIN_BAR_HEIGHT = 30; // Max and min bar heights
 
     private Integer[] array; // Array to hold the data
     private int capacity, speed; // Capacity of the array and speed of visualization
-    private MyBar[] bars; // Array of bars for visualization
+    private Bar[] bars; // Array of bars for visualization
     private boolean hasArray; // Flag to check if array is created
 
     // Variables for tracking statistics
@@ -29,15 +30,15 @@ public class Display {
     private SortedListener listener; // Listener for sorting events
 
     // Constructor
-    public Display(int capacity, int fps, SortedListener listener) {
+    public Visualizer(int capacity, int fps, SortedListener listener) {
         this.capacity = capacity;
         this.speed = (int) (1000.0 / fps);
         this.listener = listener;
         startTime = time = comp = swapping = 0;
 
-        originalColor = ColorPicker.BAR_WHITE;
+        originalColor = ColorManager.BAR_WHITE;
         comparingColor = Color.YELLOW;
-        swappingColor = ColorPicker.BAR_RED;
+        swappingColor = ColorManager.BAR_RED;
 
         bs = listener.getBufferStrategy();
 
@@ -47,7 +48,7 @@ public class Display {
     // Method to create a random array for visualization
     public void createRandomArray(int canvasWidth, int canvasHeight) {
         array = new Integer[capacity];
-        bars = new MyBar[capacity];
+        bars = new Bar[capacity];
         hasArray = true;
 
         double x = PADDING;
@@ -56,17 +57,17 @@ public class Display {
         double width = (double) (canvasWidth - PADDING * 2) / capacity;
 
         g = bs.getDrawGraphics();
-        g.setColor(ColorPicker.CANVAS_BACKGROUND);
+        g.setColor(ColorManager.CANVAS_BACKGROUND);
         g.fillRect(0, 0, canvasWidth, canvasHeight);
 
         Random rand = new Random();
         int value;
-        MyBar bar;
+        Bar bar;
         for (int i = 0; i < array.length; i++) {
             value = rand.nextInt(MAX_BAR_HEIGHT) + MIN_BAR_HEIGHT;
             array[i] = value;
 
-            bar = new MyBar((int) x, y, (int) width, value, originalColor);
+            bar = new Bar((int) x, y, (int) width, value, originalColor);
             bar.draw(g);
             bars[i] = bar;
 
@@ -81,14 +82,14 @@ public class Display {
     private Color getBarColor(int value) {
         int interval = (int) (array.length / 5.0);
         if (value < interval)
-            return ColorPicker.BAR_ORANGE;
+            return ColorManager.BAR_ORANGE;
         else if (value < interval * 2)
-            return ColorPicker.BAR_YELLOW;
+            return ColorManager.BAR_YELLOW;
         else if (value < interval * 3)
-            return ColorPicker.BAR_GREEN;
+            return ColorManager.BAR_GREEN;
         else if (value < interval * 4)
-            return ColorPicker.BAR_CYAN;
-        return ColorPicker.BAR_BLUE;
+            return ColorManager.BAR_CYAN;
+        return ColorManager.BAR_BLUE;
     }
 
     // Bubble sort visualization
@@ -181,7 +182,7 @@ public class Display {
 
         comp = swapping = 0;
 
-        MyBar bar;
+        Bar bar;
         for (int i = 1; i < array.length; i++) {
             bars[i].setColor(getBarColor(i));
 
@@ -254,7 +255,7 @@ public class Display {
     // Partition method for quick sort
     private int partition(int start, int end) {
         int pivot = array[end];
-        MyBar bar = bars[end];
+        Bar bar = bars[end];
         Color oldColor = bar.getColor();
         bar.setColor(comparingColor);
         bar.draw(g);
@@ -380,7 +381,7 @@ public class Display {
     // Helper method to color two bars during comparison
     private void colorPair(int i, int j, Color color) {
         Color color1 = bars[i].getColor(), color2 = bars[j].getColor();
-        
+
         bars[i].setColor(color);
         bars[i].draw(g);
 
@@ -405,7 +406,7 @@ public class Display {
 
     // Helper method to color a single bar
     private void colorBar(int index, Color color) {
-        MyBar bar = bars[index];
+        Bar bar = bars[index];
         Color oldColor = bar.getColor();
 
         bar.setColor(color);
@@ -474,4 +475,3 @@ public class Display {
         BufferStrategy getBufferStrategy();
     }
 }
-
