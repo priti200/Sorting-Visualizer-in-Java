@@ -1,5 +1,6 @@
 # Sorting Visualizer - Java-based GUI Application
 
+
 ## Project Overview
 The **Sorting Visualizer** is a Java-based GUI application that demonstrates and visualizes the step-by-step execution of popular sorting algorithms. It allows users to see the sorting process in action, using a bar chart representation. The application supports **Bubble Sort**, **Insertion Sort**, **Selection Sort**, **Quick Sort**, and **Merge Sort**, providing a dynamic and interactive way to explore sorting algorithms.
 
